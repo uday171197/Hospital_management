@@ -1,0 +1,39 @@
+
+
+<div class="mt-30" style="margin-top: 59px;display: flex;justify-content: center;">
+    <div class="form-group" style="">
+        <div class="col-12" [hidden]='showinput'>
+        <form name="hospitalform" style="margin:auto" id="loginForm" autocomplete="off" (ngSubmit)="requested_slot(userForm)" #userForm="ngForm">             
+            <div class="input-container col-12">
+                <label class="display:inline;">From :</label>
+                <input style="" class="form-control" type="time" placeholder="select Time" name="starttime" [(ngModel)]="starttime" required >
+            </div>
+            <div class="input-container col-12 ">
+                <label style="padding-top: 10px;">To :</label>
+                <input style="" class="form-control" type="time" placeholder="select Time" name="endtime" [(ngModel)]="endtime" required >
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" style="height: 50px;
+                margin-top: 20px;">Request for Slot</button>    
+            </div>
+        </form>
+        </div>
+        <div class="col-12" [hidden]='hideslot'>
+            <select class="form-control" id="appt" (change)="selecttime($event)">
+                <option value="">Select Slot</option>
+                <option *ngFor="let appointment of slotBook; index as i;" value="{{appointment._id}}" 
+                    >{{appointment.appointmentTime}}</option>
+            </select>
+        </div>
+        <div class="col-12" [hidden]='hidebutton'>
+            <button type="button" class="btn btn-primary col-12" style="height: 50px;
+            display: inline-block;
+            margin-top: 20px;" (click)='BookSlot()'>Book Slot</button>
+        </div>
+        <div class="col-12" [hidden]='hideslot'>
+            <button type="button" class="btn btn-primary col-12" style="height: 50px;
+            display: inline-block;
+            margin-top: 20px;" (click)='change_status()'>Request for Slot</button>
+        </div>
+    </div>
+</div>

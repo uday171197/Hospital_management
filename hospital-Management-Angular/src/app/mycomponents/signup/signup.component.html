@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- <base href="../"> -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>SignUp | Hospital</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->       
+<link rel="shortcut icon" href="images/ico/favicon.ico">
+
+</head><!--/head-->
+
+<body>
+<app-nav></app-nav>
+<section id="form"><!--form-->
+    <div class="container">
+        <div class="row">
+            <form name="hospitalform" style="max-width:500px;margin:auto" id="signupForm" (ngSubmit)='onRegister(registerData)' autocomplete="off" #registerData='ngForm'> 
+                <h2 style="text-align: center; margin: 15px 0px;">New User Signup!</h2>
+                <div class="input-container">
+                    <i class="fa fa-user icon"></i>
+                    <input class="input-field" type="text" placeholder="Username" name="name" [(ngModel)]='name' required #username="ngModel">
+                </div>
+                <div *ngIf='username.invalid && username.touched'>
+                    <span class="ZAtlA incorrect" id="fullname">
+                        <span>Please enter valid Name</span>
+                    </span>
+                </div>
+                
+              
+                <div class="input-container">
+                  <i class="fa fa-envelope icon"></i>
+                  <input class="input-field" type="email" id="emailIn" placeholder="Email Address" name="email" [(ngModel)]='email' ngModel email="true" #userEmail="ngModel" required>
+                </div>
+                <div ig>
+
+                </div>
+                <div *ngIf='alreadyexist'>
+                    <span class="ZAtlA incorrect" id="email">
+                        <span>This Email Address already exists</span>
+                    </span>
+                </div>
+                
+                <div *ngIf='isvarified != true' >
+                    <span class="ZAtlA incorrect" id="wrongcode">
+                        <span>The Email Verification failed</span>
+                    </span>
+                </div>
+                
+
+                <div class="input-container">
+                  <i class="fa fa-key icon"></i>
+                  <input class="input-field" type="password" placeholder="Password" name="password" [(ngModel)]='password' minlength="8" #userPassord="ngModel" required>
+                </div>
+                <div *ngIf="passwordlength">
+                    <span class="ZAtlA incorrect" id="password">
+                        <span>Length of the password must be minimum 8</span>
+                    </span>
+                </div>
+                
+                <div class="input-container">
+                <label class="checkcontainer">Patient
+                    <input type="radio" checked="checked" value="patient" [(ngModel)]='patient' name="usertype" #Patient='ngModel'>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkcontainer">Nurse
+                    <input type="radio" value="nurse" name="usertype" [(ngModel)]='nurse' #Nurse='ngModel'>
+                    <span class="checkmark"></span>
+                </label>
+                </div>
+                
+                <button class="btn register" style="padding: 15px 20px;">Register</button>
+                <p style="margin: 5px 0px 10px;">By creating an account you agree to our <a href="#" style="color:dodgerblue;text-decoration: none;">Terms & Privacy</a>.</p>
+                <div class="alreadyuser">
+                    <span style="float: left;">Admin? <a [routerLink]="['/admin-login']">Sign in</a></span>
+                    <span style="float: right;">Already a User? <a [routerLink]="['']">Sign in</a></span>
+                </div>
+                <!-- <div class="alreadyuser">Admin? <a href="/admin-login">Sign in</a></div> -->
+            </form>
+        </div>
+    </div>
+</section><!--/form-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/signup.js"></script>
+</body>
+</html>

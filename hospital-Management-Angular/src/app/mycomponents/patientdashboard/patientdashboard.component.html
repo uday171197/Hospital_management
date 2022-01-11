@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Patient Dashboard</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.min.css">
+	
+</head>
+
+<!-- show header in block below-->
+<header class="header-fixed">
+	<div class="header-limiter">
+		<h1><a [routerLink]="['/patient-dash']" routerLinkActive="router-link-active" >Patient <span>Dashboard</span></a></h1>
+		<nav>
+			<a (click)="openTab('Calender')" style="cursor: pointer;">Calendar</a>
+			<div style="display: inline;" *ngIf="UserData!=null">
+				<a (click)="openTab('appointments')">Appointments</a>
+				<button class="btn btn-danger" style="margin-left: 1em;" (click)='Logout()'  >Logout</button>
+			</div> 
+			<div style="display: inline-block;" *ngIf="UserData==null">
+				<button type="button" (click)='Login()' class=" btn btn-primary btn-sm">Login</button>
+			</div>
+
+		</nav>
+	</div>
+</header>
+
+<body>
+	<div class="notification">
+		  <div class="toast show upcomingSlot" data-autohide="false" *ngIf="showUpcoming">
+			<div class="toast-header">
+				<strong class="mr-auto text-primary">Next Appointment</strong>
+				<button type="button" class="ml-2 mb-1 close close-toast" data-dismiss="toast" onclick="$('.upcomingSlot').remove()">&times;</button>
+			</div>
+			<div class="toast-body" [innerHTML]="upcomingSlot"></div>
+		</div>
+		<div class="toast show requetedSlot" data-autohide="false" *ngIf="foundRequestedSlot">
+		  <div class="toast-header">
+			  <strong class="mr-auto text-primary">Requested Slot Available</strong>
+			  <button type="button" class="ml-2 mb-1 close close-toast" data-dismiss="toast" onclick="$('.requetedSlot').remove()">&times;</button>
+		  </div>
+		  <div class="toast-body" [innerHTML]="RequestedSlotMsg"></div>
+	  </div>
+	</div>
+	<div>
+		<!--display all upcoming appointment in block below-->
+		<div *ngIf="tabname">
+			<div class="appoint">
+				<div *ngIf="slotbooked!=[] as value; else elseBlock">
+					<!-- <div class="form-group row" style="margin: 1% 6%;">
+						<label for="example-date-input" class="col-xxl-1 col-form-label">Filter Date</label>
+						<div class="col-3">
+							<input class="form-control" type="date" id="filterD" pattern="\d{4}-\d{2}-\d{2}">
+						</div>
+						<div class="col-3">
+							<a href="javascript:void(0)"  onclick="clearFilter()"
+							style="margin-top: 12px;color: blue;text-decoration: underline; display: inline-block;">clear</a>
+						</div>
+						
+					</div> -->
+					<div class="container appointStyle">
+						<div class="row text-center" style="background: #292c2f;color: #fff;">
+							<div class="col-5"> Date </div>
+							<div class="col-5"> Appointment </div>
+						</div>
+					    <div *ngFor="let slotbook of slotbooked; index as i;">
+							<div class="row text-center">
+								<div class="col-5">
+									{{slotbook.date}}
+								</div>
+								<div class="col-5">
+									{{slotbook.Time}}
+								</div>
+							</div>
+						</div>
+						
+
+					</div>
+				</div>
+				<ng-template #elseBlock>
+					<div style="margin-top: 100px; text-align: center;">
+						<h3> No Appointments Found.</h3>
+					</div>
+					
+				</ng-template>
+			</div>
+		</div>
+
+		<!-- if upcoming appointment is present display message in block below-->
+		<div *ngIf="nextapt.length>0">
+			<div class="toast show" data-autohide="false">
+				<div class="toast-header">
+					<strong class="mr-auto text-primary">Next Appointment</strong>
+					<button type="button" class="ml-2 mb-1 close close-toast" data-dismiss="toast">&times;</button>
+				</div>
+				<div class="toast-body">
+					Your next appointment is scheduled with <b>
+						{{ nextapt.bookDate}}
+					</b> on <b>
+						{{ nextapt.appointmentType}}
+					</b> for <b>
+						{{ nextapt.appointmentTime }}
+					</b> @ <b>
+						{{ nextapt.DoctorName}}
+					</b> at <b>
+						{{ nextapt.Clinicname}}
+					</b>
+				</div>
+			</div>
+		</div>
+
+		<!--display calender and slot in block below-->
+		<div *ngIf="!tabname">
+			<div class="container calendar" style="margin-top: 100px;">
+				<div class="row">
+					<div class="col-md-8">
+						<div >
+							
+							<full-calendar #calendar [options]="calendarOptions"></full-calendar>
+							<!-- <full-calendar [options]="calendarOptions"></full-calendar> -->
+						</div>
+					</div>
+					<div class="col-md-4 " *ngIf="UserData!= null">
+						<!-- render slot in block below-->
+						
+						<div class="mt-60 ml-50 card hospital-form-card" [hidden]="hidediv" style="height: 341px;
+						margin-top: 65px;">
+							<div class="pt-30" style="text-align: center;">
+								<h4 >please select your appointment</h4>
+							</div>
+							<app-bookapointment [selecteddate]="selecteddate"></app-bookapointment>
+
+						</div> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

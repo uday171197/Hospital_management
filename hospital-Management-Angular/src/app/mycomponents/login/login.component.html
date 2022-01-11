@@ -1,0 +1,71 @@
+<head>
+<!-- <base href="../"> -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Login | Hospital</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head><!--/head-->
+
+<nav class="navigation" style="height:90px;">
+    <div class="container-fluid" style="display: flex;">
+        <div class="navigation__column left" style="width:30%;"></div>
+        <div class="navigation__column center" style="width:40%;">
+            <div class="header__logo">
+                <a class="ps-logo" href="#"style="padding-top: 15px; display: inline-block; max-width: 150px; line-height: 55px;">
+                    <img src="images/logo.png" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="navigation__column right" style="width:30%;"></div>
+    </div>
+</nav>
+<section id="form"><!--form-->
+    <div class="container">
+        <div class="row">
+            <form name="hospitalform" style="width:350px;margin:auto" id="loginForm" autocomplete="off" (ngSubmit)="onLoginSubmit(userForm)" #userForm="ngForm"> 
+                <h2 style="text-align: center;margin: 15px 0px;">Login</h2>
+                
+                <div class="input-container">
+                  <i class="fa fa-envelope icon"></i>
+                  <input class="input-field" type="email" placeholder="Email Address" name="email" [(ngModel)]="email" [pattern]="emailPattern" #userEmail="ngModel"  required >
+                </div>
+                <div *ngIf="userEmail.errors && !isValidFormSubmitted && userEmail.touched" [ngClass] = "'error'">   
+                    <div *ngIf="userEmail.errors.pattern && userEmail.touched">   
+                        <span class="ZAtlA incorrect" id="login">
+                            <span>Invalid Email-id</span>
+                        </span> 
+                    </div>   
+                </div> 
+                
+                <div class="input-container">
+                  <i class="fa fa-key icon"></i>
+                  <input class="input-field" type="password" placeholder="Password" name="password" [(ngModel)]="password" #userpasssword ='ngModel' minlength="8"  required>
+                </div>
+                <div *ngIf="userpasssword.invalid && userpasssword.touched"> 
+                    <span class="ZAtlA incorrect" id="fullname">
+                        <span>Enter valid password.</span>
+                    </span>                        
+                </div> 
+                <div *ngIf="passwordlength"> 
+                    <span class="ZAtlA incorrect" id="fullname">
+                        <span>Password must be of length 8.</span>
+                    </span>                        
+                </div>
+                
+                <button class="btn" style="padding: 15px 20px;">Login</button>
+                
+                <div *ngIf="WrongCred"> 
+                    <span class="ZAtlA incorrect" id="login">
+                        <span>Invalid Email-id or Password entered</span>
+                    </span>                      
+                </div>
+                
+                <div class="alreadyuser">New User? <a [routerLink]="['/register']" >SignUp</a></div>
+            </form>
+        </div>
+    </div>
+</section><!--/form-->
+

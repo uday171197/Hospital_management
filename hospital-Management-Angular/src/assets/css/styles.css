@@ -1,0 +1,91 @@
+
+.table-ui{
+    border-radius: 5px;
+}
+
+.pad-10{
+    padding: 10px;
+}
+
+.table-head{
+    background-color: #6c7ae0;
+    color: white;
+}
+
+.table-body{
+    height: 90%;
+    overflow-x: scroll;
+}
+
+.table-body tr td{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.modal-dialog {
+    max-width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.modal-content {
+    height: auto;
+    min-height: 100%;
+    border-radius: 0;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+background: #f2f2f2; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #555; 
+}
+
+.small-input{
+    width: 92%;
+    display: inline;
+}
+
+.delete-option{
+    display: inline;
+    border: 1px solid#f50f0f;
+    padding: 7px;
+    float: right;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #f50f0f;
+    cursor: pointer;
+}
+
+.search-button{
+    border-color:  #6c7ae0;
+    background-color: #6c7ae0;
+    color:  white;
+}
+
+.search-button:hover{
+    border-color:  #6c7ae0;
+    background-color: #6c7ae0;
+    color:  white;
+}
+
+.arrow-option{
+    padding: 7px;
+    float: right;
+    border-radius: 5px;
+    font-size: 20px;
+    color:  #6c7ae0;
+}

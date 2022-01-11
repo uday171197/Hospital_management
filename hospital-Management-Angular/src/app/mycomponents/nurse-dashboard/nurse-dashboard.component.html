@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Patient Dashboard</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.min.css">
+</head>
+
+<!-- show header in block below-->
+<header class="header-fixed">
+	<div class="header-limiter">
+		<h1><a [routerLink]="['/patient-dash']" routerLinkActive="router-link-active" >Nurse <span>Dashboard</span></a></h1>
+		<nav>
+			<a (click)="openTab('Calender')" style="cursor: pointer;">Calendar</a>
+			<div style="display: inline;" *ngIf="UserData!=null">
+				<a (click)="openTab('slots')">Slots</a>
+				<a (click)="openTab('appointments')">Appointments</a>
+				<a (click)="openTab('request')">Request</a>
+				<button class="btn btn-danger" style="margin-left: 1em;" (click)='Logout()'  >Logout</button>
+			</div>
+			<div style="display: inline-block;" *ngIf="UserData ==null">
+				<button type="button" (click)='Login()' class=" btn btn-primary btn-sm">Login</button>
+			</div>
+
+		</nav>
+	</div>
+</header>
+
+<body>
+	<div>
+		<!--display all upcoming appointment in block below-->
+		<div *ngIf="tabname=='appointments'">
+			<div class="appoint">
+				<div *ngIf="slotbooked!=[] as value; else elseBlock">
+					<div class="container appointStyle">
+						<div class="row text-center" style="background: #292c2f;color: #fff;">
+							<div class="col-4"> Date </div>
+							<div class="col-4"> Patient </div>
+							<div class="col-4"> Appointment </div>
+							
+						</div>
+					    <div *ngFor="let slotbook of slotbooked; index as i;">
+							<div class="row text-center">
+								<div class="col-4">
+									{{slotbook.date}}
+								</div>
+								<div class="col-4">
+									{{slotbook.username}}
+								</div>
+								<div class="col-4">
+									{{slotbook.Time}}
+								</div>
+							</div>
+						</div>
+						
+
+					</div>
+				</div>
+				<ng-template #elseBlock>
+					<div style="margin-top: 100px; text-align: center;">
+						<h3> No Appointments Found.</h3>
+					</div>
+					
+				</ng-template>
+			</div>
+		</div>
+		<!-- display all slots-->
+		<div *ngIf="tabname=='slots'">
+			<div class="appoint">
+				<div *ngIf="slotBook!=[]">
+					<div class="container appointStyle">
+						<div class="row text-center" style="background: #292c2f;color: #fff;">
+							<div class="col-5"> Date </div>
+							<div class="col-5"> Time </div>
+							
+						</div>
+					    <div *ngFor="let slot of slotBook; index as i;">
+							<div class="row text-center">
+								<div class="col-5">
+									{{slot.date}}
+								</div>
+								<div class="col-5">
+									{{slot.appointmentTime}}
+								</div>
+								<div class="col-2">
+									<button class="btn btn-danger" (click)="deleteSlot(slot._id)">Delete</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div *ngIf="tabname=='request'">
+			<div class="appoint">
+				<div *ngIf="requestedslot!=[] as value; else elseBlock">
+					<!-- <div class="form-group row" style="margin: 1% 6%;">
+						<label for="example-date-input" class="col-xxl-1 col-form-label">Filter Date</label>
+						<div class="col-3">
+							<input class="form-control" type="date" id="filterD" pattern="\d{4}-\d{2}-\d{2}">
+						</div>
+						<div class="col-3">
+							<a href="javascript:void(0)"  onclick="clearFilter()"
+							style="margin-top: 12px;color: blue;text-decoration: underline; display: inline-block;">clear</a>
+						</div>
+						
+					</div> -->
+					<div class="container appointStyle">
+						<div class="row text-center" style="background: #292c2f;color: #fff;">
+							<div class="col-3"> Date </div>
+							<div class="col-3"> Patient </div>	
+							<div class="col-4"> Requested Appointment </div>
+							
+						</div>
+					    <div *ngFor="let slotbook of requestedslot; index as i;">
+							<div class="row text-center">
+								<div class="col-3">
+									{{slotbook.date}}
+								</div>
+								<div class="col-3">
+									{{slotbook.username}}
+								</div>
+								<div class="col-4">
+									{{slotbook.Time}}
+								</div>
+								<div class="col-2">
+									<button type="button" class="btn btn-primary" (click)="approveSlot(slotbook._id)">Approve Slot</button>
+								</div>
+							</div>
+						</div>
+						
+
+					</div>
+				</div>
+				<ng-template #elseBlock>
+					<div style="margin-top: 100px; text-align: center;">
+						<h3> No Appointments Found.</h3>
+					</div>
+					
+				</ng-template>
+			</div>
+		</div>
+
+		<!-- if upcoming appointment is present display message in block below-->
+		<div *ngIf="nextapt.length>0">
+			<div class="toast show" data-autohide="false">
+				<div class="toast-header">
+					<strong class="mr-auto text-primary">Next Appointment</strong>
+					<button type="button" class="ml-2 mb-1 close close-toast" data-dismiss="toast">&times;</button>
+				</div>
+				<div class="toast-body">
+					Your next appointment is scheduled with <b>
+						{{ nextapt.bookDate}}
+					</b> on <b>
+						{{ nextapt.appointmentType}}
+					</b> for <b>
+						{{ nextapt.appointmentTime }}
+					</b> @ <b>
+						{{ nextapt.DoctorName}}
+					</b> at <b>
+						{{ nextapt.Clinicname}}
+					</b>
+				</div>
+			</div>
+		</div>
+
+		<!--display calender and slot in block below-->
+		<div *ngIf="tabname=='Calender'">
+			<div class="container calendar" style="margin-top: 100px;">
+				<div class="row">
+					<div class="col-md-8">
+						<div>
+							<!-- <h1>celender</h1> -->
+							<full-calendar #calendar [options]="calendarOptions"></full-calendar>
+							<!-- <full-calendar [options]="calendarOptions"></full-calendar> -->
+						</div>
+					</div>
+					<div class="col-md-4" *ngIf="UserData!= null">
+						<!-- render slot in block below-->
+						<div class="card hospital-form-card" style="height: 341px; width: 437px; margin-top: 65px;" [hidden]="hidediv">
+							<div class="pt-30 " style="text-align: center;">
+								<h4>Create Slot</h4>
+							</div>
+							<app-addslot [selecteddate]="selecteddate"></app-addslot>
+					    </div>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- display selection menu for clinic, doctor, appointment below-->
+		<!-- <div *ngIf="tabname=='Calender'"></div> -->
+		<!-- </div> -->
+
+
+		<!-- pop up below opens for confirmation when user is booking appointment-->
+		<div class="modal fade show" id="confirmModal" role="dialog" style="background: rgba(0,0,0,.7);">
+			<div class="modal-dialog">
+				<div class="modal-content" style="width: max-content; height: max-content;">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalTitle">Confirm your Appointment</h5>
+						<button type="butUserData._idton" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<table class="table table-borderless">
+							<thead>
+								<th><b>Personal Information</b></th>
+								<th><b>Appointment Details</b></th>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Name : </td>
+									<td> Clinic: <span id="modalClinic"> my clinic</span></td>
+								</tr>
+								<tr>
+									<td>Email: </td>
+									<td>Doctor: <span id="modalDoctor">My Doctor</span></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>Appointment Type: <span id="modalAppt"> vaccination</span></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>Date: <span id="modalDate"> 3 feb 2021</span></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>Time: <span id="modalTime"> 10AM - 11AM</span></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="modal-btn-wrapper text-center">
+							<button type="button" class="btn btn-primary w-50"
+								onclick="confirmSlot()">Confirm</button><br><br>
+							<button type="button" class="btn btn-secondary w-50" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--pop up ends here-->
+	<script src="/plugins/jquery/dist/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.min.js"></script>
+</body>
+</html>

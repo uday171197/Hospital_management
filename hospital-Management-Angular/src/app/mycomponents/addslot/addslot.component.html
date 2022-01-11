@@ -1,0 +1,23 @@
+
+
+<div class="mt-30 ml-80 mr-80" style="height: 410px;width: 620px;margin-top:30px;">
+    <div class="form-group" style=" margin-left: 120px; width: 200px;">
+        <form name="hospitalform" style="width:350px;margin:auto" id="loginForm" autocomplete="off" (ngSubmit)="add_slot(userForm)" #userForm="ngForm">             
+            <div class="input-container col-12">
+              <label class="display:inline;">From :</label>
+              <input style="    width: 149px; margin-left: 10px;" class="form-control" type="time" placeholder="select Time" name="starttime" [(ngModel)]="starttime" required >
+            </div>
+            <div class="input-container col-12 ">
+                <label style="padding-top: 10px;">To :</label>
+                <input style="width: 149px; margin-left: 10px;" class="form-control" type="time" placeholder="select Time" name="endtime" [(ngModel)]="endtime" required >
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" style="height: 50px;
+                width: 150px;
+                margin-left: 10px;
+                margin-top: 20px;">Add Slot</button>    
+            </div>
+        </form>
+    </div>
+</div>
+

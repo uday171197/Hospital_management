@@ -1,0 +1,16 @@
+
+<div class="modal fade" id="deleteUserModal" ></div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          Do you really want to delete {{data.collection}}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-hospital" data-dismiss="modal" mat-dialog-close>Cancel</button>
+          <button type="button" class="btn btn-primary btn-hospital" mat-button [mat-dialog-close]="true" (click)='deletedata(data.id,data.collection)'>Yes</button>
+        </div>
+      </div>
+</div>
+
+
+

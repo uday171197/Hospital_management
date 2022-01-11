@@ -1,0 +1,19 @@
+.bookingSlot{
+	display: none;
+	padding: 0 6%;
+	position: absolute;
+	bottom: 2em;
+	right: 0;
+}
+.actbtn{
+	font-size: 18px;
+	padding: 6px 40px;
+}
+
+html {
+	overflow:   scroll;
+  }
+  ::-webkit-scrollbar {
+	  width: 0px;
+	  background: transparent; /* make scrollbar transparent */
+  }

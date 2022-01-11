@@ -1,0 +1,217 @@
+/* lg */
+
+@media (min-width: 1200px) {
+    .or{
+        margin-top: 95px;
+    }
+}
+
+
+/* md */
+
+@media (min-width: 992px) and (max-width: 1199px){
+    .forgot-pass{
+        width: 100%;
+        margin: auto;
+    }
+    .or{
+        margin-top: 95px;
+    }
+}
+
+/* sm */
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .col-sm-3,
+    .col-sm-4 {
+        width: 50%;
+    }
+    .col-sm-2 {
+        width: 33%;
+        display: inline-block;
+        margin-bottom: 50px;
+    }
+    .login-form form span  {
+        font-size: 12px;
+    }
+    #emailverify-envelope{
+        font-size: 40px;
+    }
+    .forgot-pass{
+        width: 60%;
+        margin: auto;
+    }
+    .responsivebtn{
+        width: 100%;
+    }
+    .or{
+        margin-top: 95px;
+        margin-left: -14px;
+    }
+    .forgotpass{
+        margin-bottom: 5px;
+    }
+    .forgotpasspage{
+        max-width: 100%;
+        flex: 0%;
+    }
+}
+
+/* xs */
+
+@media (max-width: 767px) {
+    #form{
+        margin-top: 10px;
+    }
+    .col-sm-6:first-child {
+        /* display: inline-block; */
+        float: left;
+    }
+    .col-sm-6:last-child {
+        /* display: inline-block; */
+        float: right;
+    }
+    .col-sm-4 {
+        display: inline-block;
+        overflow: inherit;
+        width: 100%;
+    }
+    .col-sm-9 {
+        display: inline-block;
+        width: 100%;
+    }
+    .col-sm-7 .col-sm-3 {
+        width: 50%;
+        float: left;
+    }
+    .col-sm-2 {
+        width: 28%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin-bottom: 50px;
+        margin-top: 0;
+        float: left;
+        margin-left: 30px;
+    }
+    .col-sm-3 {
+        display: inline-block;
+    }
+    .or {
+        background: #2AC37D;
+        border-radius: 40px;
+        color: #FFFFFF;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        height: 50px;
+        line-height: 50px;
+        margin-top: 25px;
+        text-align: center;
+        width: 50px;
+        margin-left: 21%;
+    }
+    .login-form-outer,
+    .signup-form-outer
+    {
+        width: 60%;
+        margin: 0% 20%;
+    }
+    .emailverify-outer{
+        width: 80%;
+        margin: auto;
+        padding: 5% 5%;
+        text-align: justify;
+        font-weight: 600;
+        border-radius: 5px;
+        box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+    }
+    .vendor-login-form-outer{
+        width: 50%;
+        margin: auto;
+    }
+    .forgot-pass{
+        width: 60%;
+        margin: auto;
+    }
+    .responsivebtn{
+        width: 100%;
+    }
+    .forgotpass{
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 576px){
+    .or{
+        margin: 4% 42% 1%;;
+    }
+    .forgotpass{
+        margin-bottom: 5px;
+    }
+}
+/* XS Portrait */
+
+@media (max-width: 480px) {
+    .btn-group>.btn-group{
+        float: none;
+    }
+     .col-sm-6:first-child {
+        display: block;
+        float: none;
+    }
+    .col-sm-6:last-child {
+        display: block;
+        float: none;
+    }
+     .col-sm-4 {
+        text-align: center;
+        overflow: inherit;
+    }
+    .col-sm-9 {
+        display: inline-block;
+        width: 100%;
+    }
+    .col-sm-2 {
+        width: 50%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin-bottom: 50px;
+        margin-top: 0;
+        float: left;
+        padding-right: 0;
+        padding-left: 30px;
+        margin-left: 0;
+    }
+    .login-form-outer,
+    .signup-form-outer
+    {
+        width: 100%;
+        margin: auto;
+    }
+    .or{
+        margin: 5% 42% 1%;;
+    }
+    .emailverify-outer{
+        width: 80%;
+        margin: auto;
+        padding: 5% 5%;
+        text-align: justify;
+        font-weight: 600;
+        border-radius: 5px;
+        box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+    }
+    #emailverify-envelope{
+        font-size: 35px;
+    }
+    .vendor-login-form-outer{
+        width: 70%;
+        margin: auto;
+    }
+    .responsivebtn{
+        width: 100%;
+    }
+    .forgotpass{
+        margin-bottom: 5px;
+    }
+}

@@ -1,0 +1,189 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+.input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid dodgerblue;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: dodgerblue;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+.checkcontainer {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin: 6px 0px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 49%;
+  }
+  
+  /* Hide the browser's default radio button */
+  .checkcontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .checkcontainer:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .checkcontainer input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .checkcontainer input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .checkcontainer .checkmark:after {
+       top: 6px;
+      left: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+  }
+
+.incorrect{
+    margin: 9px 0px 5px 0px;
+    color: rgb(255, 97, 97);
+    font-size: 12px;
+    font-weight: 500;
+    /* display: none; */
+}
+.alreadyuser{
+  margin: 10px 0 0;
+  text-align: center;
+  display: block;
+}
+
+/* ---------------------------------ADMIN DashBoard-------------------- */
+.cardstyle{
+  margin-bottom: 10px;
+  background-color: #567086;
+  border: solid black 0.5px;
+  color: #fff;
+}
+.admindashcont{
+  min-height: 100px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.navbar-tabs{
+  text-align: center;
+  color: gray;
+}
+
+.navbar-tabs:hover{
+  color: #6c7ae0;
+}
+
+.admin-dashboard-background{
+  background-color: #f8f9fa;
+  min-height: 300px;
+  padding: 50px 0px;
+}
+
+.navbar-light{
+  border-bottom: #ccc;
+}
+
+.hospital-form-card{
+  width: 50%;
+  margin: auto;
+  padding: 30px 0px;
+}
+
+.hospital-navbar{
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+}
+
+.btn-hospital{
+  padding: 10px 20px;
+  background-color: #6c7ae0;
+  width: auto;
+}
+
+.btn-hospital:hover{
+  background-color: #5664cc;
+}
+
+.hospital-background{
+  background-color: #6c7ae0;
+  margin-top: 50px;
+  color: white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

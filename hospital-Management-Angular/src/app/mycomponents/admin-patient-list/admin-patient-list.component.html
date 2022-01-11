@@ -1,0 +1,45 @@
+
+	<div class="" id="home">
+        <div class="container vendorcontainer" style="width: 900px;">
+            <!-- row -->
+            <div class="row tm-content-row">
+
+                <div class="col-12 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block tm-block-taller admindashcont" id="reviewcontainer" style="min-height: 100px;">
+							<div class="card cardstyle">
+								<div class="card-body" style="display: flex;">
+									<span style="width: 20%;">uday</span>
+									<span style="width: 50%;">uday@gmail.com</span>
+									<span style="width: 30%;text-align: center;">
+										<i class="material-icons" style="cursor: pointer;" title="Delete User" onclick="document.getElementById('confirmdeleteModal-<%= userObject[i]._id %>').style.display='block'">delete</i>
+										<div class="modal fade show" id="confirmdeleteModal-<%= userObject[i]._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog" role="document" style="max-width: none;">
+											  <div class="modal-content">
+												<div class="modal-header">
+												  <h5 class="modal-title" id="exampleModalLabel">Confirm Deletion</h5>
+												  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="document.getElementById('confirmdeleteModal-<%= userObject[i]._id %>').style.display='none'">
+													<span aria-hidden="true">&times;</span>
+												  </button>
+												</div>
+												<div class="modal-body">
+													<div class="message" style="text-align: left;">
+														<div id="Username-<%= userObject[i]._id %>">uday</div>
+														<div id="Email-<%= userObject[i]._id %>">Uday@gmail.com</div>
+													</div>
+												</div>
+												<div class="modal-btn-wrapper" style="padding: 0rem 1rem 1rem;">
+													<button type="button" class="btn btn-secondary" style="float: left;width: 100px;" data-dismiss="modal" onclick="document.getElementById('confirmdeleteModal-<%= userObject[i]._id %>').style.display='none'">Close</button>
+													<button type="button" style="width: 100px;float: right;padding: 13px 20px;" class="btn btn-primary" onclick="deleteUser('<%= userObject[i]._id %>')">Confirm</button>
+												</div>
+											  </div>
+											</div>
+										</div>
+									</span>
+								</div>
+							  </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
